@@ -11,6 +11,16 @@
   </head>
 
   <body>
+  <% if current_user %>
+    <p>Hello <%= current_user.role %>, <%= current_user.email %></p>
+    <%= link_to "Sign out", destroy_user_session_path, 'data-turbo-method': :delete %>
+  <% else %>
+    <p>you not signet in</p>
+    <%= link_to "Sign up", new_user_registration_path %>
+    <%= link_to "Login", new_user_session_path %>
+  <% end %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
     <%= yield %>
   </body>
 </html>

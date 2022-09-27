@@ -9,10 +9,17 @@
     <%= comment.body %>
   </p>
 
-  <p>
-    <%= link_to "Destroy Comment", [comment.article, comment], data: {
-      turbo_method: :delete,
-      turbo_confirm: "Are you sure?"
-    } %>
-  </p>
+  <% if current_user %>
+    <% if current_user.admin? %>
+      <p>
+        <%= link_to "Destroy Comment", [comment.article, comment], data: {
+          turbo_method: :delete,
+          turbo_confirm: "Are you sure?"
+        } %>
+      </p>
+      <%else %>
+      <p><s>Destroy Comment</s> (for admins only)</p>
+    <%end %>
+  <%end %>
+
 <% end %>
