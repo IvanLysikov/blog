@@ -1,17 +1,22 @@
 <%= form_with model: [ @article, @article.comments.build ] do |form| %>
+  <div class="input-group mb-3">
+    <%= form.text_field :commenter, :class => "form-control", :placeholder => "Commenter" %>
+  </div>
+
+  <div class="input-group mb-3">
+<!--    <%#= form.label :body %><br>-->
+    <%= form.text_area :body,  :class => "form-control", :placeholder => "Body"%>
+  </div>
+
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <%= form.label :status, :class => "input-group-text" %>
+    </div>
+    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public', :class => "custom-select" %>
+  </div>
+
   <p>
-    <%= form.label :commenter %><br>
-    <%= form.text_field :commenter %>
-  </p>
-  <p>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %>
-  </p>
-  <p>
-    <%= form.label :status %><br>
-    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
-  </p>
-  <p>
-    <%= form.submit %>
+    <%= form.submit  "create comment", :class => "btn-primary"%>
   </p>
 <% end %>
