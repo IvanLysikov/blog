@@ -1,27 +1,31 @@
 <%= form_with model: article do |form| %>
-  <div>
-    <%= form.label :title %><br>
-    <%= form.text_field :title %>
+  <div class="input-group mb-3">
+    <%= form.text_field :title, :class => "form-control", :placeholder => "Title" %>
     <% article.errors.full_messages_for(:title).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
-  <div>
-    <%= form.label :body %><br>
-    <%= form.text_area :body %><br>
+  <div class="input-group mb-3">
+    <%= form.text_area :body, :class => "form-control", :placeholder => "Body" %><br>
     <% article.errors.full_messages_for(:body).each do |message| %>
       <div><%= message %></div>
     <% end %>
   </div>
 
-  <div>
-    <%= form.label :status %><br>
-    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public' %>
+
+  <div class="input-group mb-3">
+    <div class="input-group-prepend">
+      <%= form.label :status, :class => "input-group-text" %>
+    </div>
+    <%= form.select :status, ['public', 'private', 'archived'], selected: 'public', :class => "custom-select" %>
   </div>
 
 
+
   <div>
-    <%= form.submit %>
+    <%= form.submit "publish", :class => "btn-primary" %>
   </div>
+
 <% end %>
+
