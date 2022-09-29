@@ -1,25 +1,17 @@
 <% unless comment.archived? %>
   <p>
-    <strong>Commenter:</strong>
-    <%= comment.commenter %>
-  </p>
-
-  <p>
-    <strong>Comment:</strong>
-    <%= comment.body %>
-  </p>
-
-  <% if current_user %>
-    <% if current_user.admin? %>
-      <p>
+    <strong><%= comment.commenter %>: </strong><%= comment.body %>
+    <% if current_user %>
+      <% if current_user.admin? %>
+      <span>
         <%= link_to "Destroy Comment", [comment.article, comment], data: {
           turbo_method: :delete,
           turbo_confirm: "Are you sure?"
         } %>
-      </p>
+      </span>
       <%else %>
-      <p><s>Destroy Comment</s> (for admins only)</p>
+        <span><s>Destroy Comment</s> (for admins only)</span>
+      <%end %>
     <%end %>
-  <%end %>
-
+  </p>
 <% end %>
